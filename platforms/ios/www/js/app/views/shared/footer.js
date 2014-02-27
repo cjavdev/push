@@ -3,12 +3,12 @@ define(function (require) {
 
   var $ = require('jquery'),
     Backbone = require('backbone'),
-    jst = require('text!app/templates/shared/footer.jst'),
-    template = _.template(jst);
+    footerJst = require('text!app/templates/shared/footer.jst'),
+    footerTemplate = _.template(footerJst);
 
   return Backbone.View.extend({
     render: function () {
-      var content = template();
+      var content = footerTemplate();
       this.$el.html(content);
       return this;
     }

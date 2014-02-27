@@ -36,14 +36,14 @@ under the License.
 
     <!-- Include the compiled Ratchet JS -->
     <script type="text/javascript" src="phonegap.js"></script>
-    <script type="text/javascript" src="js/lib/require.js"></script>
+    <script type="text/javascript" data-main="js/index" src="js/lib/require.js"></script>
   </head>
   <body>
     <header class="bar bar-nav">
       <h1 class="title">Push</h1>
     </header>
 
-    <div class="content">
+    <div id="main" class="content">
       <p class="content-padded">Thanks for downloading Ratchet. This is an example HTML page that's linked up to compiled Ratchet CSS and JS, has the proper meta tags and the HTML structure. Need some more help before you start filling this with your own content? Check out some Ratchet resources:</p>
       <div class="card">
         <ul class="table-view">
@@ -70,6 +70,7 @@ under the License.
         </ul>
       </div>
     </div>
+    <div id="footer"></div>
   </div>
 </body>
 </html>

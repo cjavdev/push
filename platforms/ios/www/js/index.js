@@ -28,9 +28,7 @@ require(['jquery',
     initialize: function () {
       this.bindEvents();
       this.installFooter();
-      new Router({
-        $rootEl: $('#main')
-      });
+      new Router();
       Backbone.history.start();
     },
 

@@ -3,7 +3,7 @@ define(function (require) {
 
   var $ = require('jquery'),
     Backbone = require('backbone'),
-    jst = require('text!app/templates/shared/footer.jst'),
+    jst = require('text!app/templates/friendships/index.jst'),
     template = _.template(jst);
 
   return Backbone.View.extend({
