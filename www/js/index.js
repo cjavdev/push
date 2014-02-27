@@ -22,7 +22,7 @@ require.config({
 require(['jquery',
     'backbone',
     'app/routers/app_router',
-    'text!app/views/shared/footer'
+    'app/views/shared/footer'
 ], function ($, Backbone, Router, Footer) {
   app = {
     initialize: function () {
@@ -33,7 +33,8 @@ require(['jquery',
     },
 
     installFooter: function () {
-      $('#footer').html(new Footer().render().$el);
+      var footerView = new Footer();
+      $('#footer').html(footerView.render().$el);
     },
 
     bindEvents: function () {
