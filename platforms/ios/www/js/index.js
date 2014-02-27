@@ -21,14 +21,18 @@ require.config({
 
 require(['jquery',
     'backbone',
+    'fastclick',
     'app/routers/app_router',
     'app/views/shared/footer'
-], function ($, Backbone, Router, Footer) {
+], function ($, Backbone, FastClick, Router, Footer) {
   app = {
     initialize: function () {
+      FastClick.attach(document.body);
       this.bindEvents();
       this.installFooter();
-      new Router();
+      new Router({
+        $rootEl: $('#main')
+      });
       Backbone.history.start();
     },
 
