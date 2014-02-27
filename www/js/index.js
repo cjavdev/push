@@ -19,14 +19,21 @@ require.config({
   }
 });
 
-require(['jquery', 'backbone', 'app/routers/app_router'], function ($, Backbone, Router) {
+require(['jquery',
+    'backbone',
+    'app/routers/app_router',
+    'text!app/views/shared/footer'
+], function ($, Backbone, Router, Footer) {
   app = {
     initialize: function () {
       this.bindEvents();
-      new Router({
-        '$rootEl': $("main")
-      });
+      this.installFooter();
+      new Router();
       Backbone.history.start();
+    },
+
+    installFooter: function () {
+      $('#footer').html(new Footer().render().$el);
     },
 
     bindEvents: function () {
