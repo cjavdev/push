@@ -2,6 +2,7 @@ define(function (require) {
   "use strict";
 
   var $ = require('jquery'),
+    Account = require('app/views/account/account'),
     Backbone = require('backbone'),
     Dashboard = require('app/views/dashboard/dashboard'),
     Footer = require('app/views/shared/footer'),
@@ -11,6 +12,7 @@ define(function (require) {
   return Backbone.Router.extend({
     routes: {
       "": "dashboard",
+      "account": "account",
       "dashboard": "dashboard",
       "friends": "friends_index"
     },
@@ -21,6 +23,11 @@ define(function (require) {
       this.$headerEl = options.$headerEl;
 
       this._installHeadAndFoot();
+    },
+
+    account: function () {
+      var view = new Account();
+      this._swapView(view);
     },
 
     currentRoute: function () {

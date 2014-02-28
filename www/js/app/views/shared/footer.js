@@ -13,6 +13,7 @@ define(function (require) {
 
     render: function () {
       var content = template({
+        activeClass: this.activeClass.bind(this),
         tabClass: this.tabClass.bind(this)
       });
       this.$el.html(content);
@@ -20,7 +21,21 @@ define(function (require) {
     },
 
     tabClass: function (btnTitle) {
-      if(this.router.currentRoute().indexOf(btnTitle) !== -1) {
+      var klass = '';
+      var mappings = {
+        'account': 'ion-ios7-star',
+        'dashboard' : 'ion-ios7-speedometer',
+        'friend' : 'ion-ios7-people'
+      };
+      klass = mappings[btnTitle];
+      if(this.activeClass(btnTitle) !== 'active') {
+        klass += '-outline';
+      }
+      return klass;
+    },
+
+    activeClass: function (btnTitle) {
+      if (this.router.currentRoute().indexOf(btnTitle) !== -1) {
         return 'active';
       }
     }

@@ -33,6 +33,7 @@ require(['jquery',
         $footerEl: $('footer'),
         $headerEl: $('header')
       });
+      Backbone.history.navigate("/");
     },
 
     bindEvents: function () {
@@ -41,12 +42,14 @@ require(['jquery',
     },
 
     onDeviceReady: function () {
+      if (parseFloat(window.device.version) === 7.0) {
+        document.body.style.marginTop = "20px";
+      }
       app.receivedEvent('deviceready');
     },
 
     // Update DOM on a Received Event
-    // receivedEvent: function (id) {
-    // }
+    receivedEvent: function (id) {}
   };
 
   app.initialize();
