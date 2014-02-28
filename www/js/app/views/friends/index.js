@@ -1,9 +1,8 @@
 define(function (require) {
   "use strict";
 
-  var $ = require('jquery'),
-    Backbone = require('backbone'),
-    jst = require('text!app/templates/friendships/index.jst'),
+  var Backbone = require('backbone'),
+    jst = require('text!app/templates/friends/index.jst'),
     template = _.template(jst);
 
   return Backbone.View.extend({

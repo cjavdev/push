@@ -4,7 +4,7 @@ define(function (require) {
   var $ = require('jquery'),
     Backbone = require('backbone'),
     Dashboard = require('app/views/dashboard/dashboard'),
-    FriendsIndex = require('app/views/friendships/index');
+    FriendsIndex = require('app/views/friends/index');
 
   return Backbone.Router.extend({
     initialize: function (options) {
@@ -13,6 +13,7 @@ define(function (require) {
 
     routes: {
       "": "dashboard",
+      "dashboard": "dashboard",
       "friends": "friends_index"
     },
 

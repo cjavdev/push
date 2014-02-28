@@ -1,8 +1,7 @@
 define(function (require) {
   "use strict";
 
-  var $ = require('jquery'),
-    Backbone = require('backbone'),
+  var Backbone = require('backbone'),
     jst = require('text!app/templates/shared/footer.jst'),
     template = _.template(jst);
 
