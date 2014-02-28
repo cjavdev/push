@@ -22,26 +22,21 @@ require.config({
 require(['jquery',
     'backbone',
     'fastclick',
-    'app/routers/app_router',
-    'app/views/shared/footer'
-], function ($, Backbone, FastClick, Router, Footer) {
+    'app/routers/app_router'
+], function ($, Backbone, FastClick, Router) {
   app = {
     initialize: function () {
-      FastClick.attach(document.body);
       this.bindEvents();
-      this.installFooter();
-      new Router({
-        $rootEl: $('#main')
-      });
       Backbone.history.start();
-    },
-
-    installFooter: function () {
-      var footerView = new Footer();
-      $('#footer').html(footerView.render().$el);
+      app.router = new Router({
+        $rootEl: $('main'),
+        $footerEl: $('footer'),
+        $headerEl: $('header')
+      });
     },
 
     bindEvents: function () {
+      FastClick.attach(document.body);
       document.addEventListener('deviceready', this.onDeviceReady, false);
     },
 
@@ -50,9 +45,8 @@ require(['jquery',
     },
 
     // Update DOM on a Received Event
-    receivedEvent: function (id) {
-
-    }
+    // receivedEvent: function (id) {
+    // }
   };
 
   app.initialize();

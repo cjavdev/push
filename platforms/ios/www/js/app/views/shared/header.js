@@ -2,7 +2,7 @@ define(function (require) {
   "use strict";
 
   var Backbone = require('backbone'),
-    jst = require('text!app/templates/shared/footer.jst'),
+    jst = require('text!app/templates/shared/header.jst'),
     template = _.template(jst);
 
   return Backbone.View.extend({

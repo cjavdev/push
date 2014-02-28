@@ -4,17 +4,32 @@ define(function (require) {
   var $ = require('jquery'),
     Backbone = require('backbone'),
     Dashboard = require('app/views/dashboard/dashboard'),
-    FriendsIndex = require('app/views/friends/index');
+    Footer = require('app/views/shared/footer'),
+    FriendsIndex = require('app/views/friends/index'),
+    Header = require('app/views/shared/header');
 
   return Backbone.Router.extend({
-    initialize: function (options) {
-      this.$rootEl = options.$rootEl;
-    },
-
     routes: {
       "": "dashboard",
       "dashboard": "dashboard",
       "friends": "friends_index"
+    },
+
+    initialize: function (options) {
+      this.$rootEl = options.$rootEl;
+      this.$footerEl = options.$footerEl;
+      this.$headerEl = options.$headerEl;
+
+      this._installHeadAndFoot();
+    },
+
+    currentRoute: function () {
+      return this.routes[Backbone.history.fragment];
+    },
+
+    dashboard: function () {
+      var view = new Dashboard();
+      this._swapView(view);
     },
 
     friends_index: function () {
@@ -22,9 +37,12 @@ define(function (require) {
       this._swapView(view);
     },
 
-    dashboard: function () {
-      var view = new Dashboard();
-      this._swapView(view);
+    _installHeadAndFoot: function () {
+      var footer = new Footer({ router: this });
+      var header = new Header({ router: this });
+
+      this.$footerEl.html(footer.render().$el);
+      this.$headerEl.html(header.render().$el);
     },
 
     _swapView: function (view) {
