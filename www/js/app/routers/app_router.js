@@ -3,6 +3,7 @@ define(function (require) {
 
   var $ = require('jquery'),
     Backbone = require('backbone'),
+    Dashboard = require('app/views/dashboard/dashboard'),
     FriendsIndex = require('app/views/friendships/index');
 
   return Backbone.Router.extend({
@@ -11,8 +12,8 @@ define(function (require) {
     },
 
     routes: {
-      "" : "root",
-      "friends" : "friends_index"
+      "": "dashboard",
+      "friends": "friends_index"
     },
 
     friends_index: function () {
@@ -20,7 +21,9 @@ define(function (require) {
       this._swapView(view);
     },
 
-    root: function () {
+    dashboard: function () {
+      var view = new Dashboard();
+      this._swapView(view);
     },
 
     _swapView: function (view) {
