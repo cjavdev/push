@@ -29,9 +29,8 @@ require(['jquery',
       this.bindEvents();
       Backbone.history.start();
       app.router = new Router({
-        $rootEl: $('main'),
-        $footerEl: $('footer'),
-        $headerEl: $('header')
+        $rootEl: $('#main'),
+        $footerEl: $('footer')
       });
       Backbone.history.navigate("/");
     },

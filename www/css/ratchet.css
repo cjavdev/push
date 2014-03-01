@@ -1010,11 +1010,11 @@ select {
 }
 .push-left:after {
     left: 15px;
-    content:'\e822';
+    content:'\f153';
 }
 .push-right:after {
     right: 15px;
-    content:'\e826';
+    content:'\f154';
 }
 @font-face {
     font-family: Ionicons;

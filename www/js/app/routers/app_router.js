@@ -6,23 +6,23 @@ define(function (require) {
     Backbone = require('backbone'),
     Dashboard = require('app/views/dashboard/dashboard'),
     Footer = require('app/views/shared/footer'),
-    FriendsIndex = require('app/views/friends/index'),
-    Header = require('app/views/shared/header');
+    FriendsShow = require('app/views/friends/show'),
+    FriendsIndex = require('app/views/friends/index');
 
   return Backbone.Router.extend({
     routes: {
       "": "dashboard",
       "account": "account",
       "dashboard": "dashboard",
-      "friends": "friends_index"
+      "friends": "friends_index",
+      "friends/:id": "friends_show"
     },
 
     initialize: function (options) {
       this.$rootEl = options.$rootEl;
       this.$footerEl = options.$footerEl;
-      this.$headerEl = options.$headerEl;
 
-      this._installHeadAndFoot();
+      this._installFooter();
     },
 
     account: function () {
@@ -44,12 +44,14 @@ define(function (require) {
       this._swapView(view);
     },
 
-    _installHeadAndFoot: function () {
-      var footer = new Footer({ router: this });
-      var header = new Header({ router: this });
+    friends_show: function (id) {
+      var view = new FriendsShow();
+      this._swapView(view);
+    },
 
+    _installFooter: function () {
+      var footer = new Footer({ router: this });
       this.$footerEl.html(footer.render().$el);
-      this.$headerEl.html(header.render().$el);
     },
 
     _swapView: function (view) {
