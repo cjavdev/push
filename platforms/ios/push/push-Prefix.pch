@@ -17,7 +17,7 @@
  under the License.
  */
 //
-// Prefix header for all source files of the 'push' target in the 'push' project
+// Prefix header for all source files of the 'Push' target in the 'Push' project
 //
 
 #ifdef __OBJC__

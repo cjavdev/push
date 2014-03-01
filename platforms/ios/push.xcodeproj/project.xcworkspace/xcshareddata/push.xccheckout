@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>4E64C859-0A7D-491B-9876-81B95BEDF3AC</string>
+	<string>775C7C38-9158-42D3-AFCD-9A45D777A174</string>
 	<key>IDESourceControlProjectName</key>
-	<string>push</string>
+	<string>Push</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>CA1941A1-BD26-4385-9124-22327EFA7AE1</key>
 		<string>https://github.com/w1zeman1p/push</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>platforms/ios/push.xcodeproj/project.xcworkspace</string>
+	<string>platforms/ios/Push.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>CA1941A1-BD26-4385-9124-22327EFA7AE1</key>
