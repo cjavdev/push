@@ -27,12 +27,11 @@ require(['jquery',
   app = {
     initialize: function () {
       this.bindEvents();
-      Backbone.history.start();
       app.router = new Router({
         $rootEl: $('#main'),
         $footerEl: $('footer')
       });
-      Backbone.history.navigate("/");
+      Backbone.history.start();
     },
 
     bindEvents: function () {

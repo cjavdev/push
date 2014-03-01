@@ -31,7 +31,7 @@ define(function (require) {
     },
 
     currentRoute: function () {
-      return this.routes[Backbone.history.fragment];
+      return Backbone.history.location.hash || "dashboard";
     },
 
     dashboard: function () {
