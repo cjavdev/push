@@ -12,7 +12,6 @@
  * Licensed under The MIT License
  * http://opensource.org/licenses/MIT
  * ---------------------------------- */
-
 !function () {
   var findModals = function (target) {
     var i, modals = document.querySelectorAll('a');
@@ -131,7 +130,7 @@
     'slide-out' : 'slide-in',
     'fade'      : 'fade'
   };
-  
+
   var bars = {
     bartab             : '.bar-tab',
     barnav             : '.bar-nav',

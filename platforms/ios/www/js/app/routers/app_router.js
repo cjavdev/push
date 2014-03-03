@@ -5,51 +5,91 @@ define(function (require) {
     Account = require('app/views/account/account'),
     Backbone = require('backbone'),
     Dashboard = require('app/views/dashboard/dashboard'),
+    DashboardLandscape = require('app/views/dashboard/landscape'),
     Footer = require('app/views/shared/footer'),
+    FriendsShow = require('app/views/friends/show'),
     FriendsIndex = require('app/views/friends/index'),
-    Header = require('app/views/shared/header');
+    MessagesNew = require('app/views/messages/new');
 
   return Backbone.Router.extend({
     routes: {
       "": "dashboard",
       "account": "account",
       "dashboard": "dashboard",
-      "friends": "friends_index"
+      "friends": "friendsIndex",
+      "friends/:id": "friendsShow",
+      "messages/new": "messagesNew"
     },
 
     initialize: function (options) {
       this.$rootEl = options.$rootEl;
       this.$footerEl = options.$footerEl;
-      this.$headerEl = options.$headerEl;
 
-      this._installHeadAndFoot();
+      this._installFooter();
     },
 
     account: function () {
       var view = new Account();
-      this._swapView(view);
+      this._swapSingleView(view);
     },
 
     currentRoute: function () {
-      return this.routes[Backbone.history.fragment];
+      return Backbone.history.location.hash || "dashboard";
     },
 
     dashboard: function () {
-      var view = new Dashboard();
-      this._swapView(view);
+      var portraitView = new Dashboard();
+      var landscapeView = new DashboardLandscape();
+      this._swapOrientedViews(portraitView, landscapeView);
+      //this._swapOrientedViews(landscapeView, landscapeView);
     },
 
-    friends_index: function () {
+    friendsIndex: function () {
       var view = new FriendsIndex();
-      this._swapView(view);
+      this._swapSingleView(view);
     },
 
-    _installHeadAndFoot: function () {
-      var footer = new Footer({ router: this });
-      var header = new Header({ router: this });
+    friendsShow: function (id) {
+      var view = new FriendsShow(id);
+      this._swapSingleView(view);
+    },
 
+    messagesNew: function () {
+      var view = new MessagesNew();
+      this._swapSingleView(view);
+    },
+
+    _installFooter: function () {
+      var footer = new Footer({
+        router: this
+      });
       this.$footerEl.html(footer.render().$el);
-      this.$headerEl.html(header.render().$el);
+    },
+
+    _orientationEvent: function () {
+      var supportsOrientationChange = window.hasOwnProperty("onorientationchange")
+      return supportsOrientationChange ? "orientationchange" : "resize";
+    },
+
+    _swapOrientedViews: function (portrait, landscape) {
+      app.supportedOrientations = 2;
+
+      if (window.orientation === 0) {
+        this._swapView(portrait);
+      } else {
+        this._swapView(landscape);
+      }
+
+      window.addEventListener(this._orientationEvent(), function () {
+        window.removeEventListener(this._orientationEvent());
+        this._swapOrientedViews(portrait, landscape);
+      }.bind(this), false);
+    },
+
+    _swapSingleView: function (view) {
+      window.removeEventListener(this._orientationEvent());
+      app.supportedOrientations = 1;
+      this._swapView(view);
     },
 
     _swapView: function (view) {

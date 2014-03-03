@@ -2,10 +2,10 @@
 <widget id="io.insiderai.push" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>push</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+      Push Up with your friends application
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="cjavilla@gmail.com" href="http://phonegap.com">
+      CJ Avilla and Ryan Sepassi
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
     <preference name="permissions" value="none" />
