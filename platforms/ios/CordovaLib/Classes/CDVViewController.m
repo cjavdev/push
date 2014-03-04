@@ -502,6 +502,15 @@
     }
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    NSString* jsCall = [NSString stringWithFormat:
+                        @"window.dispatchEvent(new CustomEvent('beforeorientationchange', { detail: { toOrientation: '%d'}}));", toInterfaceOrientation];
+    [webView stringByEvaluatingJavaScriptFromString:jsCall];
+    
+    NSLog(jsCall);
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // First, ask the webview via JS if it supports the new orientation

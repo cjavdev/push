@@ -66,29 +66,30 @@ define(function (require) {
       this.$footerEl.html(footer.render().$el);
     },
 
-    _orientationEvent: function () {
-      var supportsOrientationChange = window.hasOwnProperty("onorientationchange")
-      return supportsOrientationChange ? "orientationchange" : "resize";
-    },
-
     _swapOrientedViews: function (portrait, landscape) {
-      app.supportedOrientations = 2;
-
+      app.orCount = 2;
       if (window.orientation === 0) {
+        console.log("current view is portrait");
         this._swapView(portrait);
       } else {
+        console.log("current view is landscape");
         this._swapView(landscape);
       }
 
-      window.addEventListener(this._orientationEvent(), function () {
-        window.removeEventListener(this._orientationEvent());
-        this._swapOrientedViews(portrait, landscape);
+      window.addEventListener('beforeorientationchange', function (e) {
+        console.log(e);
+        if(e.detail.toOrientation == 2 || e.detail.toOrientation == 3) {
+          this._swapView(landscape);
+        } else {
+          this._swapView(portrait);
+        }
+        window.removeEventListener('beforeorientationchange');
       }.bind(this), false);
     },
 
     _swapSingleView: function (view) {
-      window.removeEventListener(this._orientationEvent());
-      app.supportedOrientations = 1;
+      app.orCount = 1;
+      window.removeEventListener('beforeorientationchange');
       this._swapView(view);
     },
 
@@ -98,4 +99,12 @@ define(function (require) {
       this.$rootEl.html(view.render().$el);
     }
   });
+});
+window.addEventListener('beforeorientationchange', function () {
+  console.log("or before: " + window.orientation);
+  console.log(app.orCount);
+});
+window.addEventListener('orientationchange', function () {
+  console.log("or onchanging: " + window.orientation);
+  console.log(app.orCount);
 });

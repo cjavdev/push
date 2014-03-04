@@ -49,12 +49,17 @@ require(['jquery',
     // Update DOM on a Received Event
     receivedEvent: function (id) {}
   };
+
   app.initialize();
-  window.shouldRotateToOrientation = function () {
-    if (app.supportedOrientations === 1) {
-        return false;
+
+  window.shouldRotateToOrientation = function (el) {
+    console.log("app orCount: " + app.orCount);
+    if (app.orCount === 1) {
+      console.log("should not Rotate: " + el);
+      return false;
     } else {
-        return true;
+      console.log("should Rotate: " + el);
+      return true;
     }
   };
 });
