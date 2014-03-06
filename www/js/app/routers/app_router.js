@@ -76,20 +76,19 @@ define(function (require) {
         this._swapView(landscape);
       }
 
-      window.addEventListener('beforeorientationchange', function (e) {
-        console.log(e);
+      window.addEventListener('orientationchange', function (e) {
         if(e.detail.toOrientation == 2 || e.detail.toOrientation == 3) {
           this._swapView(landscape);
         } else {
           this._swapView(portrait);
         }
-        window.removeEventListener('beforeorientationchange');
+        window.removeEventListener('orientationchange');
       }.bind(this), false);
     },
 
     _swapSingleView: function (view) {
       app.orCount = 1;
-      window.removeEventListener('beforeorientationchange');
+      window.removeEventListener('orientationchange');
       this._swapView(view);
     },
 
@@ -99,12 +98,4 @@ define(function (require) {
       this.$rootEl.html(view.render().$el);
     }
   });
-});
-window.addEventListener('beforeorientationchange', function () {
-  console.log("or before: " + window.orientation);
-  console.log(app.orCount);
-});
-window.addEventListener('orientationchange', function () {
-  console.log("or onchanging: " + window.orientation);
-  console.log(app.orCount);
 });
