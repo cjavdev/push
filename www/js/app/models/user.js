@@ -2,8 +2,7 @@
 define(function (require) {
   "use strict";
 
-  var _ = require('lodash'),
-    Backbone = require('backbone'),
+  var Backbone = require('backbone'),
     FriendRequestsCollection = require('app/collections/friend_requests'),
     WorkoutsCollection = require('app/collections/workouts'),
     FriendshipsCollection = require('app/collections/friendships');
@@ -14,6 +13,7 @@ define(function (require) {
     },
 
     login: function () {
+      return;
     },
 
     parse: function (response) {

@@ -17,7 +17,6 @@ define(function (require) {
     },
 
     handleStatusChange: function (session) {
-      debugger
       var user = [];
       //var permissions = ['user_status', 'publish_checkins', 'user_likes'];
 

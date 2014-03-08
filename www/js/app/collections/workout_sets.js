@@ -1,3 +1,4 @@
+/*global define */
 define(function (require) {
   "use strict";
 
@@ -10,5 +11,5 @@ define(function (require) {
     },
 
     model: WorkoutSetModel
-  })
+  });
 });

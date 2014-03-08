@@ -92,7 +92,7 @@ define(function (require) {
       }
 
       window.addEventListener('orientationchange', function (e) {
-        if(e.detail.toOrientation === 2 || e.detail.toOrientation === 3) {
+        if (e.detail.toOrientation === 2 || e.detail.toOrientation === 3) {
           this._swapView(landscape);
         } else {
           this._swapView(portrait);

@@ -1,7 +1,9 @@
+/*global define */
 define(function (require) {
   "use strict";
 
-  var Backbone = require('backbone'),
+  var _ = require('lodash'),
+    Backbone = require('backbone'),
     jst = require('text!app/templates/shared/footer.jst'),
     template = _.template(jst);
 

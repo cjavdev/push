@@ -1,8 +1,11 @@
+/*global define */
 define(function (require) {
   "use strict";
 
-  var Backbone = require('backbone'),
-      UserModel = require('app/models/user');
+  var $ = require('jquery'),
+    Backbone = require('backbone'),
+    FriendshipModel = require('app/models/friendship'),
+    UserModel = require('app/models/user');
 
   return Backbone.Model.extend({
     parse: function (response) {
@@ -29,7 +32,9 @@ define(function (require) {
         url: '/friend_requests/' + this.id + '/accept',
         type: 'POST',
         success: function (resp) {
-          var friendship = new FriendshipModel(resp, {parse: true});
+          var friendship = new FriendshipModel(resp, {
+            parse: true
+          });
           that.collection.remove(that);
           callback(friendship);
         }
@@ -42,7 +47,7 @@ define(function (require) {
       $.ajax({
         url: '/friend_requests/' + this.id + '/accept',
         type: 'DELETE',
-        success: function (resp) {
+        success: function () {
           that.collection.remove(that);
           callback();
         }

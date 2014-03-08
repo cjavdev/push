@@ -3,8 +3,8 @@ define(function (require) {
   "use strict";
 
   var Backbone = require('Backbone'),
-      MessagesCollection = require('app/collections/messages'),
-      UserModel = require('app/models/user');
+    MessagesCollection = require('app/collections/messages'),
+    UserModel = require('app/models/user');
 
   return Backbone.Model.extend({
     parse: function (response) {
