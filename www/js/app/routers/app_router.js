@@ -11,7 +11,7 @@ define(function (require) {
     Footer = require('app/views/shared/footer'),
     FriendsShow = require('app/views/friends/show'),
     FriendsIndex = require('app/views/friends/index'),
-    Login = require('app/views/shared/login'),
+    Login = require('app/views/account/login'),
     MessagesNew = require('app/views/messages/new');
 
   return Backbone.Router.extend({

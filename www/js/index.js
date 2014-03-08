@@ -1,6 +1,4 @@
-/*global window */
-/*global document */
-/*global app:true */
+/*global window, document, app:true, FB */
 
 window.app = {};
 
@@ -9,7 +7,7 @@ require.config({
 
   paths: {
     app: '../app',
-    tpl: '../templates'
+    tpl: '../templates',
   },
 
   shim: {
@@ -48,6 +46,16 @@ require(['jquery',
         document.body.style.marginTop = "20px";
       }
       app.receivedEvent('deviceready');
+
+      FB.init({
+        appId: '1389364367952791',
+        nativeInterface: CDV.FB,
+        useCachedDialogs: false
+      });
+
+      FB.getLoginStatus(window.handleStatusChange);
+      //window.authUser();
+      window.updateAuthElements();
     },
 
     // Update DOM on a Received Event
@@ -58,7 +66,7 @@ require(['jquery',
 
   app.initialize();
 
-  window.shouldRotateToOrientation = function (/* el */) {
+  window.shouldRotateToOrientation = function ( /* el */ ) {
     if (app.orCount === 1) {
       return false;
     }

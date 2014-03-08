@@ -1,8 +1,9 @@
+/*global define */
 define(function (require) {
   "use strict";
 
   var Backbone = require('Backbone'),
-      MessagesCollection = require('app/collections/messages')
+      MessagesCollection = require('app/collections/messages'),
       UserModel = require('app/models/user');
 
   return Backbone.Model.extend({
@@ -35,6 +36,6 @@ define(function (require) {
       }
 
       return this._messages;
-    };
+    }
   });
 });

@@ -42,11 +42,11 @@ under the License.
     <!-- <link rel="apple&#45;touch&#45;icon&#45;precomposed" href="http://www.facebookmobileweb.com/hackbook/img/iphone_icon.png" /> -->
 
     <!-- Include the compiled Ratchet CSS -->
-    <link href="css/app.css" rel="stylesheet" type="text/css">
     <link href="css/ratchet.css" rel="stylesheet" type="text/css">
     <link href="css/ionicons.css" rel="stylesheet" type="text/css">
     <link href="css/ratchet-theme-ios.css" rel="stylesheet" type="text/css">
     <link href="css/ratchet-ios7.css" rel="stylesheet" type="text/css">
+    <link href="css/app.css" rel="stylesheet" type="text/css">
 
     <!-- Include the compiled Ratchet JS -->
     <script type="text/javascript" src="cordova.js"></script>
@@ -74,18 +74,6 @@ under the License.
     <script src="js/graph_api.js"></script>
     <script src="js/requests.js"></script>
     <!-- <script src="js/credits.js"></script> -->
-    <script>
-        document.addEventListener('deviceready', function() {
-            FB.init({
-                appId: '1389364367952791',
-                nativeInterface: CDV.FB,
-                useCachedDialogs: false
-            });
-            FB.getLoginStatus(handleStatusChange);
-            authUser();
-            updateAuthElements();
-        });
-    </script>
   </div>
 </body>
 </html>

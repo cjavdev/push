@@ -29,7 +29,7 @@
  * The Prelude is what keeps us from being messy. In order to co-exist with
  * arbitary environments, we need to control our footprint. The one and only
  * rule to follow here is that we need to limit the globals we introduce. The
- * only global we should every have is ``FB``. This is exactly what the prelude
+ * only global we should ever have is ``FB``. This is exactly what the prelude
  * enables us to do.
  *
  * The main method to take away from this file is `FB.copy()`_. As the name
@@ -99,11 +99,11 @@ if (!window.FB) {
     },
     _locale: null,
     _localeIsRtl: false,
-      
+
 
     // CORDOVA PATCH
     _nativeInterface : null,
-      
+
     /**
      * Retrieve one of the various domains needed for Connect.
      *
@@ -5103,7 +5103,7 @@ FB.provide('', {
     }
 
     // CORDOVA PATCH
-    // If the nativeInterface arg is specified then call out to the nativeInterface 
+    // If the nativeInterface arg is specified then call out to the nativeInterface
     // which uses the native app rather than using the iframe / popup web
     if (FB._nativeInterface) {
         switch (params.method) {
@@ -5134,7 +5134,7 @@ FB.provide('', {
         }
         return;
     }
-    
+
     // process popup-only permissions
     if ((params.method == 'permissions.request' ||
          params.method == 'permissions.oauth') &&
@@ -7316,7 +7316,7 @@ FB.provide('', {
     if (FB._nativeInterface) {
       FB._nativeInterface.init(FB._apiKey, function(e) {alert('Cordova Facebook Connect plugin fail on init!');});
     }
-    
+
     // disable logging if told to do so, but only if the url doesnt have the
     // token to turn it on. this allows for easier debugging of third party
     // sites even if logging has been turned off.

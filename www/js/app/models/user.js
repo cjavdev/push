@@ -1,32 +1,43 @@
+/*global define */
 define(function (require) {
   "use strict";
 
-  var Backbone = require('backbone'),
-      FriendRequestsCollection = require('app/collections/friend_requests')
-      WorkoutsCollection = require('app/collections/workouts')
-      FriendshipsCollection = require('app/collections/friendships');
+  var _ = require('lodash'),
+    Backbone = require('backbone'),
+    FriendRequestsCollection = require('app/collections/friend_requests'),
+    WorkoutsCollection = require('app/collections/workouts'),
+    FriendshipsCollection = require('app/collections/friendships');
 
   return Backbone.Model.extend({
     url: function () {
-      return '/user'
+      return '/user';
+    },
+
+    login: function () {
     },
 
     parse: function (response) {
       if (response.friendships) {
-        this.friendships().set(response.friendships, {parse: true});
+        this.friendships().set(response.friendships, {
+          parse: true
+        });
         // friend
         // messages
         delete response.friendships;
       }
 
       if (response.workouts) {
-        this.workouts().set(response.workouts, {parse: true});
+        this.workouts().set(response.workouts, {
+          parse: true
+        });
         // workout sets
         delete response.workouts;
       }
 
       if (response.received_friend_requests) {
-        this.friendRequests().set(response.received_friend_requests, {parse: true})
+        this.friendRequests().set(response.received_friend_requests, {
+          parse: true
+        });
         // sender
         delete response.received_friend_requests;
       }
@@ -58,5 +69,5 @@ define(function (require) {
 
       return this._friendRequests;
     }
-  })
+  });
 });
