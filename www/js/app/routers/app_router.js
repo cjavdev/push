@@ -9,11 +9,12 @@ define(function (require) {
     Footer = require('app/views/shared/footer'),
     FriendsShow = require('app/views/friends/show'),
     FriendsIndex = require('app/views/friends/index'),
+    Login = require('app/views/shared/login'),
     MessagesNew = require('app/views/messages/new');
 
   return Backbone.Router.extend({
     routes: {
-      "": "dashboard",
+      "": "login",
       "account": "account",
       "dashboard": "dashboard",
       "friends": "friendsIndex",
@@ -30,6 +31,16 @@ define(function (require) {
 
     account: function () {
       var view = new Account();
+      this._swapSingleView(view);
+    },
+
+    auth: function () {
+      //do some fb auth shit here
+      return;
+    },
+
+    login: function () {
+      var view = new Login();
       this._swapSingleView(view);
     },
 

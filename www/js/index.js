@@ -1,3 +1,7 @@
+/*global window */
+/*global document */
+/*global app:true */
+
 window.app = {};
 
 require.config({
@@ -47,19 +51,17 @@ require(['jquery',
     },
 
     // Update DOM on a Received Event
-    receivedEvent: function (id) {}
+    receivedEvent: function (id) {
+      return id;
+    }
   };
 
   app.initialize();
 
-  window.shouldRotateToOrientation = function (el) {
-    console.log("app orCount: " + app.orCount);
+  window.shouldRotateToOrientation = function (/* el */) {
     if (app.orCount === 1) {
-      console.log("should not Rotate: " + el);
       return false;
-    } else {
-      console.log("should Rotate: " + el);
-      return true;
     }
+    return true;
   };
 });
