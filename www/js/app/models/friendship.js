@@ -14,7 +14,7 @@ define(function (require) {
 
       if (response.messages) {
         this.messages().set(response.messages);
-        this.messages()._friend_id = this.friend().id;
+        this.messages()._friend_id = response.friend_id;
         delete response.messages;
       }
 
