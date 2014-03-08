@@ -2,10 +2,10 @@ define(function (require) {
   "use strict";
 
   var Backbone = require('backbone'),
-      WorkoutModel = require('app/models/workout');
+      FriendRequestModel = require('app/models/friend_request');
 
   return Backbone.Collection.extend({
-    url: '/workouts',
-    model: WorkoutModel
+    url: '/friend_requests',
+    model: FriendRequestModel
   });
 });
