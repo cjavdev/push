@@ -1,3 +1,5 @@
+/*global define, app, window */
+
 define(function (require) {
   "use strict";
 
@@ -25,13 +27,12 @@ define(function (require) {
     initialize: function (options) {
       this.$rootEl = options.$rootEl;
       this.$footerEl = options.$footerEl;
-
-      this._installFooter();
     },
 
     account: function () {
       var view = new Account();
       this._swapSingleView(view);
+      this._installFooter();
     },
 
     auth: function () {
@@ -53,16 +54,19 @@ define(function (require) {
       var landscapeView = new DashboardLandscape();
       this._swapOrientedViews(portraitView, landscapeView);
       //this._swapOrientedViews(landscapeView, landscapeView);
+      this._installFooter();
     },
 
     friendsIndex: function () {
       var view = new FriendsIndex();
       this._swapSingleView(view);
+      this._installFooter();
     },
 
     friendsShow: function (id) {
       var view = new FriendsShow(id);
       this._swapSingleView(view);
+      this._installFooter();
     },
 
     messagesNew: function () {
@@ -88,7 +92,7 @@ define(function (require) {
       }
 
       window.addEventListener('orientationchange', function (e) {
-        if(e.detail.toOrientation == 2 || e.detail.toOrientation == 3) {
+        if(e.detail.toOrientation === 2 || e.detail.toOrientation === 3) {
           this._swapView(landscape);
         } else {
           this._swapView(portrait);
