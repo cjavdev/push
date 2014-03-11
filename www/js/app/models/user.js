@@ -1,11 +1,10 @@
 /*global define */
-define(function (require) {
+define(['backbone',
+        'app/collections/friend_requests',
+        'app/collections/workouts',
+        'app/collections/friendships'],
+  function (Backbone, FriendRequestsCollection, WorkoutsCollection, FriendshipsCollection) {
   "use strict";
-
-  var Backbone = require('backbone'),
-    FriendRequestsCollection = require('app/collections/friend_requests'),
-    WorkoutsCollection = require('app/collections/workouts'),
-    FriendshipsCollection = require('app/collections/friendships');
 
   return Backbone.Model.extend({
     url: function () {
@@ -56,7 +55,7 @@ define(function (require) {
 
     workouts: function () {
       if (!this._workouts) {
-        this._friendships = new WorkoutsCollection();
+        this._workouts = new WorkoutsCollection();
       }
 
       return this._workouts;

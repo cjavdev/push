@@ -1,7 +1,7 @@
 /*global define */
-define(function (require) {
-  var Backbone = require('Backbone'),
-      MessageModel = require('app/models/message');
+define(['backbone', 'app/models/message'],
+  function (Backbone, MessageModel) {
+  "use strict";
 
   return Backbone.Collection.extend({
     url: function () {

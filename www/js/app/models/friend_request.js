@@ -1,11 +1,11 @@
 /*global define */
-define(function (require) {
+define(['jquery',
+        'backbone',
+        'app/models/friendship',
+        'app/models/user',
+        'require'],
+  function ($, Backbone, FriendshipModel, UserModel, require) {
   "use strict";
-
-  var $ = require('jquery'),
-    Backbone = require('backbone'),
-    FriendshipModel = require('app/models/friendship'),
-    UserModel = require('app/models/user');
 
   return Backbone.Model.extend({
     parse: function (response) {
@@ -19,6 +19,7 @@ define(function (require) {
 
     sender: function () {
       if (!this._sender) {
+        UserModel = require('app/models/user');
         this._sender = new UserModel();
       }
 
