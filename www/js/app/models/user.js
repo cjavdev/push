@@ -55,7 +55,7 @@ define(['backbone',
 
     workouts: function () {
       if (!this._workouts) {
-        this._friendships = new WorkoutsCollection();
+        this._workouts = new WorkoutsCollection();
       }
 
       return this._workouts;

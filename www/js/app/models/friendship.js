@@ -1,8 +1,9 @@
 /*global define */
 define(['backbone',
         'app/collections/messages',
-        'app/models/user'],
-  function (Backbone, MessagesCollection, UserModel) {
+        'app/models/user',
+        'require'],
+  function (Backbone, MessagesCollection, UserModel, require) {
   "use strict";
 
   return Backbone.Model.extend({
@@ -23,6 +24,7 @@ define(['backbone',
 
     friend: function () {
       if (!this._friend) {
+        UserModel = require('app/models/user');
         this._friend = new UserModel();
       }
 

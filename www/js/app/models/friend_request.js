@@ -2,8 +2,9 @@
 define(['jquery',
         'backbone',
         'app/models/friendship',
-        'app/models/user'],
-  function ($, Backbone, FriendshipModel, UserModel) {
+        'app/models/user',
+        'require'],
+  function ($, Backbone, FriendshipModel, UserModel, require) {
   "use strict";
 
   return Backbone.Model.extend({
@@ -18,6 +19,7 @@ define(['jquery',
 
     sender: function () {
       if (!this._sender) {
+        UserModel = require('app/models/user');
         this._sender = new UserModel();
       }
 
