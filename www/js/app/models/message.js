@@ -1,6 +1,6 @@
 /*global define */
-define(function (require) {
-  var Backbone = require('backbone');
+define(['backbone'], function (Backbone) {
+  "use strict";
 
   return Backbone.Model.extend({
 

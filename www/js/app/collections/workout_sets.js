@@ -1,9 +1,7 @@
 /*global define */
-define(function (require) {
+define(['backbone', 'app/models/workout_set'],
+  function (Backbone, WorkoutSetModel) {
   "use strict";
-
-  var Backbone = require('backbone'),
-      WorkoutSetModel = require('app/models/workout_set');
 
   return Backbone.Collection.extend({
     url: function () {
