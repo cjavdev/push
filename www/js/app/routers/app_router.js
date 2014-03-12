@@ -16,7 +16,9 @@ define(function (require) {
 
   return Backbone.Router.extend({
     routes: {
-      "": "login",
+      "": "dashboard",
+      //"": "login",
+      "login": "login",
       "account": "account",
       "dashboard": "dashboard",
       "friends": "friendsIndex",

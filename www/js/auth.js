@@ -128,7 +128,6 @@ function uninstallApp() {
 }
 
 //See https://developers.facebook.com/docs/reference/javascript/FB.logout/
-
 function logout() {
   FB.logout(function (response) {
     window.location.reload();

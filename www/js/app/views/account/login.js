@@ -60,7 +60,7 @@ define(function (require) {
 
     login: function (event) {
       event.preventDefault();
-      FB.login(null, {
+      FB.login(app.handleStatusChange, {
         scope: 'email'
       });
     },
