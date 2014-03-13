@@ -11,10 +11,6 @@ define(['backbone',
       return '/user';
     },
 
-    login: function () {
-      return;
-    },
-
     parse: function (response) {
       if (response.friendships) {
         this.friendships().set(response.friendships, {

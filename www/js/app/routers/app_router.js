@@ -4,21 +4,19 @@ define(function (require) {
   "use strict";
 
   var $ = require('jquery'),
-    Account = require('app/views/account/account'),
+    AccountView = require('app/views/account/account'),
     Backbone = require('backbone'),
-    Dashboard = require('app/views/dashboard/dashboard'),
-    DashboardLandscape = require('app/views/dashboard/landscape'),
-    Footer = require('app/views/shared/footer'),
-    FriendsShow = require('app/views/friends/show'),
-    FriendsIndex = require('app/views/friends/index'),
-    Login = require('app/views/account/login'),
-    MessagesNew = require('app/views/messages/new');
+    DashboardView = require('app/views/dashboard/dashboard'),
+    DashboardLandscapeView = require('app/views/dashboard/landscape'),
+    FooterView = require('app/views/shared/footer'),
+    FriendsShowView = require('app/views/friends/show'),
+    FriendsIndexView = require('app/views/friends/index'),
+    AuthView = require('app/views/auth/auth'),
+    MessagesNewView = require('app/views/messages/new');
 
   return Backbone.Router.extend({
     routes: {
-      "": "dashboard",
-      //"": "login",
-      "login": "login",
+      "": "auth",
       "account": "account",
       "dashboard": "dashboard",
       "friends": "friendsIndex",
@@ -32,18 +30,14 @@ define(function (require) {
     },
 
     account: function () {
-      var view = new Account();
+      var view = new AccountView();
       this._swapSingleView(view);
       this._installFooter();
     },
 
     auth: function () {
-      //do some fb auth shit here
-      return;
-    },
-
-    login: function () {
-      var view = new Login();
+      console.log("auth route called");
+      var view = new AuthView();
       this._swapSingleView(view);
     },
 
@@ -52,32 +46,31 @@ define(function (require) {
     },
 
     dashboard: function () {
-      var portraitView = new Dashboard();
-      var landscapeView = new DashboardLandscape();
+      var portraitView = new DashboardView();
+      var landscapeView = new DashboardLandscapeView();
       this._swapOrientedViews(portraitView, landscapeView);
-      //this._swapOrientedViews(landscapeView, landscapeView);
       this._installFooter();
     },
 
     friendsIndex: function () {
-      var view = new FriendsIndex();
+      var view = new FriendsIndexView();
       this._swapSingleView(view);
       this._installFooter();
     },
 
     friendsShow: function (id) {
-      var view = new FriendsShow(id);
+      var view = new FriendsShowView(id);
       this._swapSingleView(view);
       this._installFooter();
     },
 
     messagesNew: function () {
-      var view = new MessagesNew();
+      var view = new MessagesNewView();
       this._swapSingleView(view);
     },
 
     _installFooter: function () {
-      var footer = new Footer({
+      var footer = new FooterView({
         router: this
       });
       this.$footerEl.html(footer.render().$el);
