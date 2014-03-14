@@ -27,6 +27,7 @@ define(function (require) {
     initialize: function (options) {
       this.$rootEl = options.$rootEl;
       this.$footerEl = options.$footerEl;
+      this.listenTo(app.currentUser, "loggedOut", this.auth);
     },
 
     account: function () {
@@ -46,6 +47,7 @@ define(function (require) {
     },
 
     dashboard: function () {
+      console.log("im on the dashboard");
       var portraitView = new DashboardView();
       var landscapeView = new DashboardLandscapeView();
       this._swapOrientedViews(portraitView, landscapeView);
@@ -99,6 +101,7 @@ define(function (require) {
     _swapSingleView: function (view) {
       app.orCount = 1;
       window.removeEventListener('orientationchange');
+
       this._swapView(view);
     },
 
@@ -106,6 +109,7 @@ define(function (require) {
       this.currentView && this.currentView.remove();
       this.currentView = view;
       this.$rootEl.html(view.render().$el);
+      this.$footerEl.html('');
     }
   });
 });

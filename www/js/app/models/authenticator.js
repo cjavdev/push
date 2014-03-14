@@ -1,10 +1,11 @@
-/*global define, FB, CDV, window */
+/*global define, FB, CDV, window, app */
 
 define(['jquery',
+    'lodash',
     'backbone',
     'require',
     'app/models/user'
-], function ($, Backbone, require, UserModel) {
+], function ($, _, Backbone, require, UserModel) {
 
   "use strict";
   return UserModel.extend({
@@ -36,10 +37,22 @@ define(['jquery',
         this.set({ loggedIn:  true });
         this.trigger("loggedIn");
         // send to rails
+
         FB.api('/me', {
-          fields: 'name, picture'
+          fields: 'name, link, first_name, last_name, picture, email'
         }, function (response) {
-          console.log("in callback of FB.api(/me)");
+          $.ajax({
+            url: 'http://localhost:3000/session',
+            type: 'POST',
+            data: _.extend(session, response),
+            success: function (model) {
+              app.currentUser.set(app.currentUser.parse(model));
+            },
+            error: function () {
+              console.log(arguments);
+            }
+          });
+
           if (!response.error) {
             //connected
             console.log("connected");
@@ -54,19 +67,22 @@ define(['jquery',
             console.log('Error getting user info: ' + JSON.stringify(response.error));
             if (response.error.error_subcode && response.error.error_subcode == "458") {
               setTimeout(function () {
+                this.trigger("uninstalled");
                 alert("App was uninstalled, Please log in again.");
-              }, 0);
+              }.bind(this), 0);
             }
             this.logout();
           }
         }.bind(this));
       } else {
+        console.log("triggering logged out");
         this.trigger("loggedOut");
         this.set({ loggedIn: false });
       }
     },
 
     login: function () {
+      console.log("login was called on authenticator");
       FB.login(this.loginResponse.bind(this), {
         scope: 'email'
       });
@@ -87,8 +103,8 @@ define(['jquery',
 
     logout: function () {
       console.log("logout");
+      this.trigger("loggedOut");
       FB.logout(function (response) {
-        this.trigger("loggedOut");
         this.set({ loggedIn: false });
         console.log("logging out");
         console.log(response);

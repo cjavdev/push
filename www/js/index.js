@@ -69,7 +69,6 @@ require(['jquery',
     //             app.installLoginView();
     //           }, 0);
     //         }
-
     //         FB.logout(function (response) {
     //           console.log("logging out");
     //           console.log(response);
